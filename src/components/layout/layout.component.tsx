@@ -118,7 +118,11 @@ const MenuItem = ({ text, Icon, to }: any) => {
     <ListItem
       disablePadding
       onClick={(e) => navigate(to)}
-      sx={{ background: `${Boolean(match) ? Colors.DarkBlue : ""}`, my: 1 }}
+      sx={{
+        background: `${Boolean(match) ? Colors.DarkBlue : ""}`,
+        my: 1,
+        borderLeft: `${Boolean(match) ? `5px solid ${Colors.BrightBlue}` : ""}`,
+      }}
     >
       <ListItemButton>
         <ListItemIcon>
