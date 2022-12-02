@@ -10,7 +10,7 @@ const LoginPage = () => {
       display="grid"
       gridTemplateColumns="repeat(12, 1fr)"
       gap={0}
-      sx={{ minHeight: "100%" }}
+      sx={{ minHeight: "80vh", maxWidth: "70vw" }}
     >
       <Box
         gridColumn={{
@@ -18,7 +18,7 @@ const LoginPage = () => {
           gridRow: "1 / 2",
           background: Colors.Orange,
           borderRadius: "1.25rem",
-          padding: "5rem",
+          padding: "8rem 5rem",
         }}
       >
         <Grid container spacing={30}>
@@ -62,13 +62,25 @@ const LoginPage = () => {
           sx={{
             background: "white",
             boxShadow: "3px 2px 2px 8px rgba(0, 0, 0, 0.2)",
-            minWidth: "90%",
-            minHeight: "80%",
+            width: "30vw",
+            height: "60vh",
             borderRadius: "1.25rem",
-            padding: "10rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <Grid container spacing={2}>
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              width: "80%",
+              height: "auto",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
+            }}
+          >
             <Grid item xs={12}>
               <Typography
                 component="h1"
@@ -77,7 +89,7 @@ const LoginPage = () => {
                 LOGIN
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ width: "100%" }}>
               <FormControl sx={{ width: "100%" }}>
                 <label htmlFor="">Email</label>
                 <OutlinedInput

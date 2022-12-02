@@ -10,7 +10,7 @@ const SignUpPage = () => {
       display="grid"
       gridTemplateColumns="repeat(12, 1fr)"
       gap={0}
-      sx={{ minHeight: "100%" }}
+      sx={{ minHeight: "80vh", maxWidth: "70vw" }}
     >
       <Box
         gridColumn={{

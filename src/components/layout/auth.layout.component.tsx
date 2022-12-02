@@ -10,7 +10,16 @@ export enum Colors {
 
 export default function AuthLayout() {
   return (
-    <Box sx={{ height: "100vh", width: "100vw", padding: "5rem 25rem" }}>
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        // padding: "5rem 25rem",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Outlet />
     </Box>
   );
