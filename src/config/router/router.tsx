@@ -4,6 +4,8 @@ import DefaultLayout from "../../components/layout/layout.component";
 import LoginPage from "../../pages/auth/login";
 import SignUpPage from "../../pages/auth/signUp";
 import DashboardPage from "../../pages/dashboard";
+import EscrowPage from "../../pages/escrow";
+import InvoicesPage from "../../pages/invoices";
 
 const router = createBrowserRouter([
   {
@@ -11,8 +13,20 @@ const router = createBrowserRouter([
     element: <DefaultLayout />,
     children: [
       {
+        index: true,
+        element: <DashboardPage />,
+      },
+      {
         path: "/dashboard",
         element: <DashboardPage />,
+      },
+      {
+        path: "/escrow",
+        element: <EscrowPage />,
+      },
+      {
+        path: "/invoices",
+        element: <InvoicesPage />,
       },
     ],
   },

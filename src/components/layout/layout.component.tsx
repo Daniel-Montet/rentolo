@@ -1,38 +1,30 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PieChartIcon from "@mui/icons-material/PieChart";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import LoginIcon from "@mui/icons-material/Login";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-import { Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useMatch, useNavigate } from "react-router-dom";
+import Header from "./header.component";
+import { Colors } from "./auth.layout.component";
+import Typography from "@mui/material/Typography";
 
 const drawerWidth = 240;
 
 export default function () {
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      {/* <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
+      <Header />
       <Drawer
         sx={{
           width: drawerWidth,
@@ -40,25 +32,77 @@ export default function () {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            // backgroundColor: "#363740",
+            background: Colors.FadedBlue,
           },
         }}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
+        <Toolbar sx={{ background: Colors.DarkBlue }}>
+          <Typography
+            variant="h1"
+            noWrap
+            component="div"
+            sx={{ fontSize: "18px", color: "white", fontWeight: "bold" }}
+          >
+            TOLO LESSEE
+          </Typography>
+        </Toolbar>
         <Divider />
-        <List>
-          <MenuItem text="Dashboard" Icon={PieChartIcon} to="dashboard" />
-          <MenuItem text="Activities" Icon={PieChartIcon} to="activities" />
-          <MenuItem text="KPIs" Icon={PieChartIcon} to="kpis" />
-          <MenuItem text="Reporting" Icon={PieChartIcon} to="reporting" />
+        <List sx={{ marginTop: "5rem", color: "white" }}>
+          <MenuItem
+            text="Dashboard"
+            Icon={(props: any) => (
+              <PieChartIcon
+                fontSize="small"
+                sx={{ color: props.active ? Colors.BrightBlue : "white" }}
+              />
+            )}
+            to="/dashboard"
+          />
+          <MenuItem
+            text="Escrow"
+            Icon={(props: any) => (
+              <MailOutlineIcon
+                fontSize="small"
+                sx={{ color: props.active ? Colors.BrightBlue : "white" }}
+              />
+            )}
+            to="/escrow"
+          />
+          <MenuItem
+            text="Invoices"
+            Icon={(props: any) => (
+              <ReceiptIcon
+                fontSize="small"
+                sx={{ color: props.active ? Colors.BrightBlue : "white" }}
+              />
+            )}
+            to="/invoices"
+          />
+          <MenuItem
+            text="Login"
+            Icon={(props: any) => (
+              <LoginIcon
+                fontSize="small"
+                sx={{ color: props.active ? Colors.BrightBlue : "white" }}
+              />
+            )}
+            to="/auth/login"
+          />
+          <MenuItem
+            text="Sign Up"
+            Icon={(props: any) => (
+              <LockOpenIcon
+                fontSize="small"
+                sx={{ color: props.active ? Colors.BrightBlue : "white" }}
+              />
+            )}
+            to="/auth/sign-up"
+          />
         </List>
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, bgcolor: "whitesmoke", p: 3 }}>
         <Toolbar />
         <Outlet />
       </Box>
@@ -68,12 +112,17 @@ export default function () {
 
 const MenuItem = ({ text, Icon, to }: any) => {
   const navigate = useNavigate();
+  const match = useMatch(text);
 
   return (
-    <ListItem disablePadding onClick={(e: any) => navigate(text)}>
+    <ListItem
+      disablePadding
+      onClick={(e) => navigate(to)}
+      sx={{ background: `${Boolean(match) ? Colors.DarkBlue : ""}`, my: 1 }}
+    >
       <ListItemButton>
         <ListItemIcon>
-          <Icon />
+          <Icon active={Boolean(match)} />
         </ListItemIcon>
         <ListItemText primary={text} />
       </ListItemButton>
